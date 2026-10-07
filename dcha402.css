@@ -6,11 +6,35 @@
   --spacing: 0.25rem;
   --color-accent: #000080;
 }
+.sticky {
+  position: sticky;
+}
+.top-0 {
+  top: 0px;
+}
 .mr-auto {
   margin-right: auto;
 }
 .flex {
   display: flex;
+}
+.h-2 {
+  height: calc(var(--spacing) * 2);
+}
+.h-20 {
+  height: calc(var(--spacing) * 20);
+}
+.h-\[2\] {
+  height: 2;
+}
+.h-\[20\] {
+  height: 20;
+}
+.h-\[200\] {
+  height: 200;
+}
+.h-\[200vh\] {
+  height: 200vh;
 }
 .w-full {
   width: 100%;
@@ -20,6 +44,9 @@
 }
 .items-center {
   align-items: center;
+}
+.items-start {
+  align-items: flex-start;
 }
 .justify-center {
   justify-content: center;
