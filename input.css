@@ -2,9 +2,13 @@
 @import "tailwindcss/utilities";
 
 @theme {
-  --color-accent: #000080;
+    --color-accent: #000080;
 }
 
 a {
-  @apply no-underline text-inherit;
+    @apply no-underline text-inherit;
+}
+
+svg {
+    @apply max-w-full max-h-full;
 }
