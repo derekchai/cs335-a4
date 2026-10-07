@@ -9,7 +9,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "watch": "npx @tailwindcss/cli -i ./input.css -o ./dcha402.css --watch",
-        "server": "dotnet nzsl-svc/nzsl.dll"
+        "server": "cd nzsl-svc; dotnet nzsl.dll"
     },
     "dependencies": {
         "@tailwindcss/cli": "^4.3.3",
