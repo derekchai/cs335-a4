@@ -18,6 +18,9 @@
 .mr-auto {
   margin-right: auto;
 }
+.ml-auto {
+  margin-left: auto;
+}
 .flex {
   display: flex;
 }
@@ -41,6 +44,9 @@
 }
 .w-full {
   width: 100%;
+}
+.max-w-prose {
+  max-width: 65ch;
 }
 .flex-1 {
   flex: 1;
