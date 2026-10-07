@@ -4,3 +4,7 @@
 @theme {
   --color-accent: #000080;
 }
+
+a {
+  @apply no-underline text-inherit;
+}
