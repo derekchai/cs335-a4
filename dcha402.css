@@ -2,12 +2,40 @@
 :root, :host {
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
-    monospace;
-  --color-red-500: oklch(63.7% 0.237 25.331);
-  --default-font-family: var(--font-sans);
-  --default-mono-font-family: var(--font-mono);
+  --color-white: #fff;
+  --spacing: 0.25rem;
+  --color-accent: #000080;
 }
-.text-red-500 {
-  color: var(--color-red-500);
+.mr-auto {
+  margin-right: auto;
+}
+.flex {
+  display: flex;
+}
+.w-full {
+  width: 100%;
+}
+.flex-1 {
+  flex: 1;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.gap-4 {
+  gap: calc(var(--spacing) * 4);
+}
+.bg-accent {
+  background-color: var(--color-accent);
+}
+.p-6 {
+  padding: calc(var(--spacing) * 6);
+}
+.font-sans {
+  font-family: var(--font-sans);
+}
+.text-white {
+  color: var(--color-white);
 }
