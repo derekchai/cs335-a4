@@ -12,6 +12,9 @@
 .top-0 {
   top: 0px;
 }
+.m-0 {
+  margin: 0px;
+}
 .mr-auto {
   margin-right: auto;
 }
@@ -56,6 +59,9 @@
 }
 .bg-accent {
   background-color: var(--color-accent);
+}
+.p-0 {
+  padding: 0px;
 }
 .p-6 {
   padding: calc(var(--spacing) * 6);
