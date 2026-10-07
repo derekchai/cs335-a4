@@ -1,12 +1,10 @@
 /*! tailwindcss v4.3.3 | MIT License | https://tailwindcss.com */
-@layer properties;
 :root, :host {
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   --color-red-100: oklch(93.6% 0.032 17.717);
   --color-white: #fff;
   --spacing: 0.25rem;
-  --container-md: 28rem;
   --text-sm: 0.875rem;
   --text-sm--line-height: calc(1.25 / 0.875);
   --color-accent: #000080;
@@ -20,9 +18,6 @@
 .m-0 {
   margin: 0px;
 }
-.m-auto {
-  margin: auto;
-}
 .mr-auto {
   margin-right: auto;
 }
@@ -35,45 +30,15 @@
 .hidden {
   display: none;
 }
-.size-4 {
-  width: calc(var(--spacing) * 4);
-  height: calc(var(--spacing) * 4);
-}
-.size-30 {
-  width: calc(var(--spacing) * 30);
-  height: calc(var(--spacing) * 30);
-}
 .size-35 {
   width: calc(var(--spacing) * 35);
   height: calc(var(--spacing) * 35);
 }
-.size-40 {
-  width: calc(var(--spacing) * 40);
-  height: calc(var(--spacing) * 40);
-}
 .h-\[50vh\] {
   height: 50vh;
 }
-.w-3 {
-  width: calc(var(--spacing) * 3);
-}
-.w-4 {
-  width: calc(var(--spacing) * 4);
-}
-.w-30 {
-  width: calc(var(--spacing) * 30);
-}
 .w-35 {
   width: calc(var(--spacing) * 35);
-}
-.w-40 {
-  width: calc(var(--spacing) * 40);
-}
-.w-45 {
-  width: calc(var(--spacing) * 45);
-}
-.w-md {
-  width: var(--container-md);
 }
 .max-w-prose {
   max-width: 65ch;
@@ -118,86 +83,15 @@
 .text-white {
   color: var(--color-white);
 }
-.filter {
-  filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-}
 a {
   color: inherit;
   text-decoration-line: none;
 }
+header {
+  -webkit-user-select: none;
+  user-select: none;
+}
 svg {
   max-height: 100%;
   max-width: 100%;
-}
-@property --tw-blur {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-brightness {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-contrast {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-grayscale {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-hue-rotate {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-invert {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-opacity {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-saturate {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-sepia {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-drop-shadow {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-drop-shadow-color {
-  syntax: "*";
-  inherits: false;
-}
-@property --tw-drop-shadow-alpha {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 100%;
-}
-@property --tw-drop-shadow-size {
-  syntax: "*";
-  inherits: false;
-}
-@layer properties {
-  @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
-    *, ::before, ::after, ::backdrop {
-      --tw-blur: initial;
-      --tw-brightness: initial;
-      --tw-contrast: initial;
-      --tw-grayscale: initial;
-      --tw-hue-rotate: initial;
-      --tw-invert: initial;
-      --tw-opacity: initial;
-      --tw-saturate: initial;
-      --tw-sepia: initial;
-      --tw-drop-shadow: initial;
-      --tw-drop-shadow-color: initial;
-      --tw-drop-shadow-alpha: 100%;
-      --tw-drop-shadow-size: initial;
-    }
-  }
 }

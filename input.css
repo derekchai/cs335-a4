@@ -9,6 +9,10 @@ a {
     @apply no-underline text-inherit;
 }
 
+header {
+    @apply select-none;
+}
+
 svg {
     @apply max-w-full max-h-full;
 }
