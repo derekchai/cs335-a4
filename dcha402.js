@@ -68,7 +68,16 @@ document.querySelectorAll("section").forEach((section) => {
 
     const link = document.createElement("a");
     link.textContent = sectionName;
-    link.setAttribute("href", "#" + sectionName);
+    link.addEventListener("click", (event) => {
+        document.querySelectorAll("section").forEach((section) => {
+            if (section.dataset.name === sectionName) {
+                section.classList.remove("hidden");
+            } else {
+                section.classList.add("hidden");
+            }
+        });
+    });
+    // link.setAttribute("href", "#" + sectionName);
 
     navbar.append(link);
 });
