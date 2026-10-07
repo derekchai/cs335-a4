@@ -37,11 +37,29 @@
 .h-\[50vh\] {
   height: 50vh;
 }
+.min-h-screen {
+  min-height: 100vh;
+}
+.w-5 {
+  width: calc(var(--spacing) * 5);
+}
 .w-35 {
   width: calc(var(--spacing) * 35);
 }
+.w-50 {
+  width: calc(var(--spacing) * 50);
+}
+.w-full {
+  width: 100%;
+}
 .max-w-prose {
   max-width: 65ch;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-col {
+  flex-direction: column;
 }
 .flex-wrap {
   flex-wrap: wrap;
