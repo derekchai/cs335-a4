@@ -115,11 +115,18 @@ registerButton.addEventListener("click", async () => {
     await registerUser(usernameField.value, passwordField.value);
 });
 
+document.getElementById("login-button").addEventListener("click", () => {
+    const loginUsername = document.getElementById("login-username-field");
+    const loginPassword = document.getElementById("login-password-field");
+    login(loginUsername.value, loginPassword.value);
+
+    document.getElementById("login-modal").classList.add("hidden");
+
+    commentButton.dispatchEvent(new Event("click"));
+});
+
 const commentButton = document.getElementById("comment-button");
 commentButton.addEventListener("click", async () => {
-    const username = "jbon007";
-    const password = "jbon007passwd";
-
     const commentField = document.getElementById("comment-field");
 
     const url = `${ADD_COMMENT_URL}?comment=${commentField.value}`;
@@ -141,22 +148,6 @@ commentButton.addEventListener("click", async () => {
     if ((await response.status) === 401) {
         console.log("add comment: unauthorized (showing login)");
         document.getElementById("login-modal").classList.remove("hidden");
-
-        document
-            .getElementById("login-button")
-            .addEventListener("click", () => {
-                const loginUsername = document.getElementById(
-                    "login-username-field",
-                );
-                const loginPassword = document.getElementById(
-                    "login-password-field",
-                );
-                login(loginUsername.value, loginPassword.value);
-
-                document.getElementById("login-modal").classList.add("hidden");
-
-                commentButton.dispatchEvent(new Event("click"));
-            });
 
         return;
     }

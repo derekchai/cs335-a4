@@ -67,9 +67,25 @@
 
       <section data-name="Guestbook" class="hidden">
         <div id="login-modal" class="hidden">
-          <input id="login-username-field" type="text" placeholder="Username" />
-          <input id="login-password-field" type="text" placeholder="Password" />
-          <button id="login-button" type="Login">Register</button>
+          <div
+            class="fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-accent text-white p-10 rounded-md flex flex-col"
+          >
+            <strong>Login</strong>
+            <p>Enter your login details to leave a comment.</p>
+            <div>
+              <input
+                id="login-username-field"
+                type="text"
+                placeholder="Username"
+              />
+              <input
+                id="login-password-field"
+                type="text"
+                placeholder="Password"
+              />
+              <button id="login-button" type="Login">Register</button>
+            </div>
+          </div>
         </div>
 
         <div class="flex flex-col">
