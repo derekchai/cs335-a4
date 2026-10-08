@@ -114,10 +114,11 @@ registerButton.addEventListener("click", async () => {
     await registerUser(usernameField.value, passwordField.value);
 });
 
+const loginUsernameField = document.getElementById("login-username-field");
+const loginPasswordField = document.getElementById("login-password-field");
+
 document.getElementById("login-button").addEventListener("click", () => {
-    const loginUsername = document.getElementById("login-username-field");
-    const loginPassword = document.getElementById("login-password-field");
-    login(loginUsername.value, loginPassword.value);
+    login(loginUsernameField.value, loginPasswordField.value);
 
     document.getElementById("login-modal").classList.add("hidden");
 
@@ -148,6 +149,8 @@ commentButton.addEventListener("click", async () => {
         console.log("add comment: unauthorized (showing login)");
         document.getElementById("login-modal").classList.remove("hidden");
 
+        loginUsernameField.focus();
+        loginUsernameField.select();
         return;
     }
 

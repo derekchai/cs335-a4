@@ -72,7 +72,7 @@
           >
             <strong>Login</strong>
             <p>Enter your login details to leave a comment.</p>
-            <div>
+            <form onsubmit="return false;">
               <input
                 id="login-username-field"
                 type="text"
@@ -83,8 +83,8 @@
                 type="text"
                 placeholder="Password"
               />
-              <button id="login-button" type="Login">Register</button>
-            </div>
+              <button id="login-button" type="submit">Login</button>
+            </form>
           </div>
         </div>
 
