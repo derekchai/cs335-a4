@@ -72,7 +72,7 @@
           >
             <strong>Login</strong>
             <p>Enter your login details to leave a comment.</p>
-            <form onsubmit="return false;">
+            <form>
               <input
                 id="login-username-field"
                 type="text"
@@ -95,15 +95,15 @@
             class="w-full flex-1"
           ></iframe>
 
-          <div class="flex">
+          <form class="flex">
             <input
               id="comment-field"
               type="text"
               placeholder="Leave a comment"
               class="flex-1 overflow-scroll"
             />
-            <button id="comment-button" type="button">Comment</button>
-          </div>
+            <button id="comment-button" type="submit">Comment</button>
+          </form>
         </div>
       </section>
     </div>

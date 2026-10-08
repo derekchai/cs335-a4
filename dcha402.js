@@ -5,6 +5,10 @@ const REGISTER_URL = "http://localhost:5000/api/Register/";
 const COMMENTS_URL = "http://localhost:5000/api/Comments/";
 const ADD_COMMENT_URL = "http://localhost:5000/api/Comment";
 
+document.querySelectorAll("form").forEach((form) => {
+    form.setAttribute("onsubmit", "return false;");
+});
+
 let encodedCredentials = null;
 
 /**
