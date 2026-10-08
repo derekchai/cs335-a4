@@ -82,7 +82,6 @@ document.querySelectorAll("section").forEach((section) => {
             }
         });
     });
-    // link.setAttribute("href", "#" + sectionName);
 
     navbar.append(link);
 });
@@ -156,6 +155,9 @@ commentButton.addEventListener("click", async () => {
         `add comment: "${await response.text()}" by ${encodedCredentials}`,
     );
     commentField.value = "";
+
+    const commentsIframe = document.getElementById("comments-iframe");
+    commentsIframe.src = commentsIframe.src;
 });
 
 function login(username, password) {
