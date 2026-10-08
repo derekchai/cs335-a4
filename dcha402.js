@@ -81,6 +81,12 @@ document.querySelectorAll("section").forEach((section) => {
         document.querySelectorAll("section").forEach((section) => {
             if (section.dataset.name === sectionName) {
                 section.classList.remove("hidden");
+
+                // Automatically focus and select first text input.
+                const firstTextInput =
+                    section.querySelector(`input[type="text"]`);
+                firstTextInput.focus();
+                firstTextInput.select();
             } else {
                 section.classList.add("hidden");
             }
