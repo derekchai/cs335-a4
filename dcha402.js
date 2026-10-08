@@ -206,17 +206,29 @@ async function getEvents() {
         eventListItem.querySelector("[data-description]").textContent =
             description;
         eventListItem.querySelector("[data-start-time]").textContent =
-            startTime;
-        eventListItem.querySelector("[data-end-time]").textContent = endTime;
+            formattedTime(startTime);
+        eventListItem.querySelector("[data-end-time]").textContent =
+            formattedTime(endTime);
 
         eventsList.appendChild(eventListItem);
-
-        console.log(event);
 
         function findValueOfField(field) {
             return lines
                 .find((line) => line.startsWith(field))
                 .slice(field.length + 1);
+        }
+
+        function formattedTime(time) {
+            const year = time.slice(0, 4);
+            const month = time.slice(4, 6);
+            const day = time.slice(6, 8);
+            const hour = time.slice(9, 11);
+            const minute = time.slice(11, 13);
+            const second = time.slice(13, 15);
+
+            // Convert to ISO 8601 (e.g. "2026-10-03T02:00:00Z")
+            const isoStr = `${year}-${month}-${day}T${hour}:${minute}:${second}Z`;
+            return new Date(isoStr).toLocaleString();
         }
     }
 }

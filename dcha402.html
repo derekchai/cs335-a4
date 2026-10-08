@@ -114,21 +114,19 @@
         ></div>
 
         <div class="hidden">
-          <div id="event-template" class="w-75 bg-red-100">
+          <div id="event-template" class="w-75 bg-red-100 flex flex-col gap-4">
             <strong data-title>Title</strong>
+
+            <div
+              class="grid grid-cols-[auto_1fr] max-sm:grid-cols-1 w-full gap-3"
+            >
+              <span>Start</span>
+              <span data-start-time></span>
+              <span>End</span>
+              <span data-end-time></span>
+            </div>
+
             <p data-description class="text-sm"></p>
-            <table class="table-auto w-full">
-              <tbody>
-                <tr>
-                  <td>Start</td>
-                  <td data-start-time>2029-04-01 3pm</td>
-                </tr>
-                <tr>
-                  <td>End</td>
-                  <td data-end-time>2029-04-01 3pm</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
