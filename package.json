@@ -9,7 +9,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "watch": "npx @tailwindcss/cli -i ./input.css -o ./dcha402.css --watch",
-        "server": "cd nzsl-svc; dotnet nzsl.dll"
+        "server": "cd nzsl-svc; dotnet nzsl.dll",
+        "serverpython": "python3 -m http.server 80"
     },
     "dependencies": {
         "@tailwindcss/cli": "^4.3.3",

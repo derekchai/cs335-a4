@@ -1,6 +1,7 @@
 const VERSION_URL = "http://localhost:5000/api/Version/";
 const SIGNS_URL = "http://localhost:5000/api/Signs/";
 const SIGN_IMAGE_URL = "http://localhost:5000/api/SignImage/";
+const REGISTER_URL = "http://localhost:5000/api/Register/";
 
 /**
  * Updates the version text element with the correct API verison, fetched from
@@ -80,4 +81,32 @@ document.querySelectorAll("section").forEach((section) => {
     // link.setAttribute("href", "#" + sectionName);
 
     navbar.append(link);
+});
+
+async function registerUser(username, password) {
+    const registerSection = document.querySelector(`[data-name="Register"]`);
+
+    const response = await fetch(REGISTER_URL, {
+        headers: {
+            accept: "text/plain",
+            "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+            username: username,
+            password: password,
+            address: "123 Main St",
+        }),
+    });
+
+    const responseText = registerSection.querySelector("[data-response-text]");
+    responseText.textContent = await response.text();
+}
+
+const registerButton = document.getElementById("register-button");
+registerButton.addEventListener("click", async () => {
+    const usernameField = document.getElementById("username-field");
+    const passwordField = document.getElementById("password-field");
+
+    await registerUser(usernameField.value, passwordField.value);
 });
