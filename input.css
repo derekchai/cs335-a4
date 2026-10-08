@@ -16,3 +16,7 @@ header {
 svg {
     @apply max-w-full max-h-full;
 }
+
+td {
+    @apply align-top;
+}

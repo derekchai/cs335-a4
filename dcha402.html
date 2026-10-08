@@ -106,6 +106,32 @@
           </form>
         </div>
       </section>
+
+      <section data-name="Events" class="hidden">
+        <div
+          id="events-list"
+          class="flex flex-wrap justify-between gap-y-4"
+        ></div>
+
+        <div class="hidden">
+          <div id="event-template" class="w-75 bg-red-100">
+            <strong data-title>Title</strong>
+            <p data-description class="text-sm"></p>
+            <table class="table-auto w-full">
+              <tbody>
+                <tr>
+                  <td>Start</td>
+                  <td data-start-time>2029-04-01 3pm</td>
+                </tr>
+                <tr>
+                  <td>End</td>
+                  <td data-end-time>2029-04-01 3pm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </div>
     <footer class="bg-accent flex items-center text-white p-6 gap-4">
       <p id="version-text"></p>

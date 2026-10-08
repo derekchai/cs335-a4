@@ -4,6 +4,8 @@ const SIGN_IMAGE_URL = "http://localhost:5000/api/SignImage/";
 const REGISTER_URL = "http://localhost:5000/api/Register/";
 const COMMENTS_URL = "http://localhost:5000/api/Comments/";
 const ADD_COMMENT_URL = "http://localhost:5000/api/Comment";
+const EVENTS_COUNT_URL = "http://localhost:5000/api/EventCount";
+const EVENT_URL = "http://localhost:5000/api/Event";
 
 document.querySelectorAll("form").forEach((form) => {
     form.setAttribute("onsubmit", "return false;");
@@ -85,8 +87,11 @@ document.querySelectorAll("section").forEach((section) => {
                 // Automatically focus and select first text input.
                 const firstTextInput =
                     section.querySelector(`input[type="text"]`);
-                firstTextInput.focus();
-                firstTextInput.select();
+
+                if (firstTextInput) {
+                    firstTextInput.focus();
+                    firstTextInput.select();
+                }
             } else {
                 section.classList.add("hidden");
             }
@@ -176,4 +181,51 @@ commentButton.addEventListener("click", async () => {
 
 function login(username, password) {
     encodedCredentials = btoa(`${username}:${password}`);
+}
+
+async function getEvents() {
+    const eventsList = document.getElementById("events-list");
+    const eventTemplate = document.getElementById("event-template");
+
+    const eventsCount = await getEventsCount();
+    for (let i = 0; i < eventsCount; i++) {
+        const url = `${EVENT_URL}/${i}`;
+        const response = await fetch(url);
+
+        const event = await response.text();
+        const lines = event.split("\n");
+
+        const title = findValueOfField("SUMMARY");
+        const description = findValueOfField("DESCRIPTION");
+        const startTime = findValueOfField("DTSTART");
+        const endTime = findValueOfField("DTEND");
+
+        const eventListItem = eventTemplate.cloneNode(true);
+
+        eventListItem.querySelector("[data-title]").textContent = title;
+        eventListItem.querySelector("[data-description]").textContent =
+            description;
+        eventListItem.querySelector("[data-start-time]").textContent =
+            startTime;
+        eventListItem.querySelector("[data-end-time]").textContent = endTime;
+
+        eventsList.appendChild(eventListItem);
+
+        console.log(event);
+
+        function findValueOfField(field) {
+            return lines
+                .find((line) => line.startsWith(field))
+                .slice(field.length + 1);
+        }
+    }
+}
+
+await getEvents();
+
+/**
+ * @returns {Number} Event count
+ */
+async function getEventsCount() {
+    return (await fetch(EVENTS_COUNT_URL)).json();
 }
