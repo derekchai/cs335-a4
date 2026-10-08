@@ -64,6 +64,20 @@
           <p data-response-text></p>
         </div>
       </section>
+
+      <section data-name="Guestbook" class="hidden">
+        <div class="flex flex-col">
+          <iframe
+            src="http://localhost:5000/api/Comments"
+            class="w-full"
+          ></iframe>
+
+          <div class="flex">
+            <input type="text" placeholder="Leave a comment" class="flex-1" />
+            <button>Comment</button>
+          </div>
+        </div>
+      </section>
     </div>
     <footer class="bg-accent flex items-center text-white p-6 gap-4">
       <p id="version-text"></p>

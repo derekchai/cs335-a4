@@ -2,6 +2,7 @@ const VERSION_URL = "http://localhost:5000/api/Version/";
 const SIGNS_URL = "http://localhost:5000/api/Signs/";
 const SIGN_IMAGE_URL = "http://localhost:5000/api/SignImage/";
 const REGISTER_URL = "http://localhost:5000/api/Register/";
+const COMMENTS_URL = "http://localhost:5000/api/Comments/";
 
 /**
  * Updates the version text element with the correct API verison, fetched from
