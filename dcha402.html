@@ -66,15 +66,26 @@
       </section>
 
       <section data-name="Guestbook" class="hidden">
+        <div id="login-modal" class="hidden">
+          <input id="login-username-field" type="text" placeholder="Username" />
+          <input id="login-password-field" type="text" placeholder="Password" />
+          <button id="login-button" type="Login">Register</button>
+        </div>
+
         <div class="flex flex-col">
           <iframe
             src="http://localhost:5000/api/Comments"
-            class="w-full"
+            class="w-full flex-1"
           ></iframe>
 
           <div class="flex">
-            <input type="text" placeholder="Leave a comment" class="flex-1" />
-            <button>Comment</button>
+            <input
+              id="comment-field"
+              type="text"
+              placeholder="Leave a comment"
+              class="flex-1 overflow-scroll"
+            />
+            <button id="comment-button" type="button">Comment</button>
           </div>
         </div>
       </section>

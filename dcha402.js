@@ -3,6 +3,9 @@ const SIGNS_URL = "http://localhost:5000/api/Signs/";
 const SIGN_IMAGE_URL = "http://localhost:5000/api/SignImage/";
 const REGISTER_URL = "http://localhost:5000/api/Register/";
 const COMMENTS_URL = "http://localhost:5000/api/Comments/";
+const ADD_COMMENT_URL = "http://localhost:5000/api/Comment";
+
+let encodedCredentials = null;
 
 /**
  * Updates the version text element with the correct API verison, fetched from
@@ -111,3 +114,59 @@ registerButton.addEventListener("click", async () => {
 
     await registerUser(usernameField.value, passwordField.value);
 });
+
+const commentButton = document.getElementById("comment-button");
+commentButton.addEventListener("click", async () => {
+    const username = "jbon007";
+    const password = "jbon007passwd";
+
+    const commentField = document.getElementById("comment-field");
+
+    const url = `${ADD_COMMENT_URL}?comment=${commentField.value}`;
+
+    const headers = {
+        accept: "text/plain",
+        "Content-Type": "application/json",
+    };
+
+    if (encodedCredentials) {
+        headers["Authorization"] = `Basic ${encodedCredentials}`;
+    }
+
+    const response = await fetch(url, {
+        headers: headers,
+        method: "POST",
+    });
+
+    if ((await response.status) === 401) {
+        console.log("add comment: unauthorized (showing login)");
+        document.getElementById("login-modal").classList.remove("hidden");
+
+        document
+            .getElementById("login-button")
+            .addEventListener("click", () => {
+                const loginUsername = document.getElementById(
+                    "login-username-field",
+                );
+                const loginPassword = document.getElementById(
+                    "login-password-field",
+                );
+                login(loginUsername.value, loginPassword.value);
+
+                document.getElementById("login-modal").classList.add("hidden");
+
+                commentButton.dispatchEvent(new Event("click"));
+            });
+
+        return;
+    }
+
+    console.log(
+        `add comment: "${await response.text()}" by ${encodedCredentials}`,
+    );
+    commentField.value = "";
+});
+
+function login(username, password) {
+    encodedCredentials = btoa(`${username}:${password}`);
+}
