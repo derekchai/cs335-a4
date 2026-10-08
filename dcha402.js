@@ -156,6 +156,7 @@ commentButton.addEventListener("click", async () => {
     );
     commentField.value = "";
 
+    // Refresh iframe to update with new comment.
     const commentsIframe = document.getElementById("comments-iframe");
     commentsIframe.src = commentsIframe.src;
 });
