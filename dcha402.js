@@ -66,7 +66,7 @@ signSearchBox.addEventListener("input", async (event) => {
     }
 });
 
-const navbar = document.querySelector("header");
+const links = document.getElementById("links");
 
 document.querySelectorAll("section").forEach((section) => {
     const sectionName = section.dataset.name;
@@ -98,7 +98,7 @@ document.querySelectorAll("section").forEach((section) => {
         });
     });
 
-    navbar.append(link);
+    links.append(link);
 });
 
 async function registerUser(username, password) {
