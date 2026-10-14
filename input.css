@@ -6,7 +6,7 @@
 }
 
 a {
-    @apply no-underline text-inherit;
+    @apply text-inherit;
 }
 
 header {
