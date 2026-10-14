@@ -7,6 +7,7 @@ const ADD_COMMENT_URL = "http://localhost:5000/api/Comment";
 const EVENTS_COUNT_URL = "http://localhost:5000/api/EventCount";
 const EVENT_URL = "http://localhost:5000/api/Event";
 const TEST_AUTH_URL = "http://localhost:5000/api/TestAuth";
+const LOG_URL = "http://localhost:5000/api/Log";
 
 document.querySelectorAll("form").forEach((form) => {
     form.setAttribute("onsubmit", "return false;");
@@ -272,3 +273,105 @@ await getEvents();
 async function getEventsCount() {
     return (await fetch(EVENTS_COUNT_URL)).json();
 }
+
+async function getLog() {
+    return (await fetch(LOG_URL)).json();
+}
+
+const log = await getLog();
+
+const plotsSvg = document.getElementById("plots-svg");
+const title = plotsSvg.querySelector("[data-title]");
+const yLabel = plotsSvg.querySelector("[data-y-label]");
+const xLabel = plotsSvg.querySelector("[data-x-label]");
+const yTicks = plotsSvg.querySelector("[data-y-ticks]");
+const xTicks = plotsSvg.querySelector("[data-x-ticks]");
+const points = plotsSvg.querySelector("[data-points]");
+
+const Y_LABEL_KEY = "quizScore";
+const X_LABEL_KEY = "practiceMinutes";
+
+const SVG_WIDTH = 500;
+const SVG_HEIGHT = 500;
+
+const X_OFFSET = 50;
+const Y_OFFSET = 50;
+
+const graphWidth = SVG_WIDTH - X_OFFSET;
+const graphHeight = SVG_HEIGHT - Y_OFFSET;
+
+const TICK_COUNT = 10;
+
+yLabel.textContent = Y_LABEL_KEY;
+xLabel.textContent = X_LABEL_KEY;
+title.textContent = `${yLabel.textContent} vs ${xLabel.textContent}`;
+
+const maxY = Math.max(...log.map((l) => l[Y_LABEL_KEY]));
+const minY = Math.max(...log.map((l) => l[Y_LABEL_KEY]));
+const maxX = Math.max(...log.map((l) => l[X_LABEL_KEY]));
+const minX = Math.max(...log.map((l) => l[X_LABEL_KEY]));
+
+const xTickExample = document.querySelector("[data-x-tick-example]");
+const yTickExample = document.querySelector("[data-y-tick-example]");
+const pointExample = document.querySelector("[data-point-example]");
+
+// X axis ticks
+for (let i = 0; i <= TICK_COUNT; i++) {
+    const tick = xTickExample.cloneNode(true);
+    const p = i / TICK_COUNT;
+    const x = pToX(p);
+
+    tick.textContent = Math.round(p * maxX);
+    tick.setAttribute("x", x);
+    xTicks.append(tick);
+}
+
+// Y axis ticks
+for (let i = 0; i <= TICK_COUNT; i++) {
+    const tick = yTickExample.cloneNode(true);
+    const p = i / TICK_COUNT;
+    const y = pToY(p);
+
+    tick.textContent = Math.round(p * maxY);
+    tick.setAttribute("y", y);
+    yTicks.append(tick);
+}
+
+log.forEach((point) => {
+    const px = point[X_LABEL_KEY] / maxX;
+    const py = point[Y_LABEL_KEY] / maxY;
+
+    const pointElement = pointExample.cloneNode(true);
+    pointElement.setAttribute("cx", pToX(px));
+    pointElement.setAttribute("cy", pToY(py));
+    points.append(pointElement);
+});
+
+function pToX(p) {
+    return X_OFFSET + p * graphWidth;
+}
+
+function pToY(p) {
+    return SVG_HEIGHT - p * graphHeight + (1 / TICK_COUNT) * graphHeight;
+}
+
+const rowExample = document.querySelector("[data-row-example]");
+const headingX = document.querySelector("[data-heading-x]");
+const headingY = document.querySelector("[data-heading-y]");
+
+headingX.textContent = X_LABEL_KEY;
+headingY.textContent = Y_LABEL_KEY;
+
+const tableBody = document.getElementById("table-body");
+
+log.forEach((point, index) => {
+    const row = rowExample.cloneNode(true);
+
+    row.querySelector("[data-index]").textContent = index;
+    row.querySelector("[data-x]").textContent = point[X_LABEL_KEY];
+    row.querySelector("[data-y]").textContent = point[Y_LABEL_KEY];
+
+    tableBody.append(row);
+});
+
+rowExample.setAttribute("hidden", "hidden");

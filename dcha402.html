@@ -144,7 +144,126 @@
           </div>
         </section>
 
-        <section data-name="Plots" class="hidden"></section>
+        <section data-name="Plots" class="hidden">
+          <!-- Practice time vs quiz score -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 600 600"
+            class="w-full"
+            id="plots-svg"
+          >
+            <!-- Title -->
+            <g>
+              <text
+                x="300"
+                y="24"
+                font-family="sans-serif"
+                font-size="24"
+                font-weight="bolder"
+                stroke="red"
+                fill="red"
+                text-anchor="middle"
+                data-title
+              >
+                TITLE
+              </text>
+            </g>
+
+            <!-- Axis labels -->
+            <g>
+              <text
+                x="25"
+                y="300"
+                font-family="sans-serif"
+                font-size="24"
+                font-weight="bolder"
+                stroke="red"
+                fill="red"
+                text-anchor="middle"
+                transform="rotate(-90, 25, 300)"
+                data-y-label
+              >
+                Y LABEL
+              </text>
+
+              <text
+                x="300"
+                y="590"
+                font-family="sans-serif"
+                font-size="24"
+                font-weight="bolder"
+                stroke="red"
+                fill="red"
+                text-anchor="middle"
+                data-x-label
+              >
+                X LABEL
+              </text>
+            </g>
+
+            <!-- y-axis values -->
+            <g data-y-ticks>
+              <text
+                x="45"
+                y="50"
+                font-family="sans-serif"
+                font-size="16"
+                font-weight="bolder"
+                stroke="red"
+                fill="red"
+                text-anchor="end"
+                dominant-baseline="central"
+                data-y-tick-example
+              ></text>
+            </g>
+
+            <!-- x-axis values -->
+            <g data-x-ticks>
+              <text
+                x="50"
+                y="555"
+                font-family="sans-serif"
+                font-size="16"
+                font-weight="bolder"
+                stroke="red"
+                fill="red"
+                text-anchor="middle"
+                dominant-baseline="hanging"
+                data-x-tick-example
+              ></text>
+            </g>
+
+            <!-- Axes -->
+            <g>
+              <path d="M 50 100 l 0 450 l 450 0" stroke="black" fill="none" />
+            </g>
+
+            <!-- Points -->
+            <!-- prettier-ignore -->
+            <g data-points>
+              <g class="hidden">
+                <circle r="5" fill="blue" fill-opacity="0.5" cx="142.5" cy="340.00000000000006" data-point-example/>
+              </g>
+            </g>
+          </svg>
+
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Index</th>
+                <th scope="col" data-heading-x>col x</th>
+                <th scope="col" data-heading-y>col y</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <tr data-row-example>
+                <th scope="row" data-index>index</th>
+                <td data-x>x</td>
+                <td data-y>y</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </div>
     </div>
     <footer class="bg-accent flex items-center text-white p-6 gap-4">
