@@ -6,6 +6,7 @@ const COMMENTS_URL = "http://localhost:5000/api/Comments/";
 const ADD_COMMENT_URL = "http://localhost:5000/api/Comment";
 const EVENTS_COUNT_URL = "http://localhost:5000/api/EventCount";
 const EVENT_URL = "http://localhost:5000/api/Event";
+const TEST_AUTH_URL = "http://localhost:5000/api/TestAuth";
 
 document.querySelectorAll("form").forEach((form) => {
     form.setAttribute("onsubmit", "return false;");
@@ -132,13 +133,38 @@ registerButton.addEventListener("click", async () => {
 const loginUsernameField = document.getElementById("login-username-field");
 const loginPasswordField = document.getElementById("login-password-field");
 
-document.getElementById("login-button").addEventListener("click", () => {
-    login(loginUsernameField.value, loginPasswordField.value);
+const logInOutButton = document.getElementById("log-in-out-button");
+
+document.getElementById("login-button").addEventListener("click", async () => {
+    await login(loginUsernameField.value, loginPasswordField.value);
 
     document.getElementById("login-modal").classList.add("hidden");
 
-    commentButton.dispatchEvent(new Event("click"));
+    if (!isAuthenticated()) {
+        logInOutButton.dispatchEvent(new Event("click"));
+    }
 });
+
+logInOutButton.addEventListener("click", showLogInPopUp);
+
+function showLogInPopUp() {
+    document.getElementById("login-modal").classList.remove("hidden");
+
+    loginUsernameField.focus();
+    loginUsernameField.select();
+}
+
+/**
+ * @returns { boolean } Whether the user is authenticated.
+ */
+async function isAuthenticated() {
+    const response = await fetch(TEST_AUTH_URL, {
+        headers: {
+            Authorization: `Basic ${encodedCredentials}`,
+        },
+    });
+    return await response.ok;
+}
 
 const commentButton = document.getElementById("comment-button");
 commentButton.addEventListener("click", async () => {
@@ -162,10 +188,7 @@ commentButton.addEventListener("click", async () => {
 
     if ((await response.status) === 401) {
         console.log("add comment: unauthorized (showing login)");
-        document.getElementById("login-modal").classList.remove("hidden");
-
-        loginUsernameField.focus();
-        loginUsernameField.select();
+        showLogInPopUp();
         return;
     }
 
@@ -179,8 +202,13 @@ commentButton.addEventListener("click", async () => {
     commentsIframe.src = commentsIframe.src;
 });
 
-function login(username, password) {
+async function login(username, password) {
     encodedCredentials = btoa(`${username}:${password}`);
+
+    if (await isAuthenticated()) {
+        document.getElementById("login-text").textContent =
+            `You are logged in as ${username}`;
+    }
 }
 
 async function getEvents() {
