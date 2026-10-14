@@ -231,6 +231,9 @@ async function getEvents() {
         const eventListItem = eventTemplate.cloneNode(true);
 
         eventListItem.querySelector("[data-title]").textContent = title;
+        eventListItem
+            .querySelector("[data-link]")
+            .setAttribute("href", `${EVENT_URL}/${i}`);
         eventListItem.querySelector("[data-description]").textContent =
             description;
         eventListItem.querySelector("[data-start-time]").textContent =
