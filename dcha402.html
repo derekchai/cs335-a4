@@ -25,123 +25,127 @@
     </header>
 
     <div class="max-w-prose ml-auto mr-auto flex-1 w-full">
-      <section data-name="About">
-        <p>
-          New Zealand Sign Language (NZSL), or Te Reo Turi, is one of Aotearoa
-          New Zealand's three official languages. NZSL is a rich and expressive
-          language used by Deaf people and the wider Deaf community throughout
-          New Zealand.
-        </p>
-        <p>
-          This application has been designed to help beginners take their first
-          steps in learning NZSL. Explore a selection of signs, practise your
-          vocabulary, discover upcoming events, and connect with other learners
-          through the guest book.
-        </p>
-        <p>Your NZSL journey starts here.</p>
-      </section>
+      <div class="p-6">
+        <section data-name="About">
+          <p>
+            New Zealand Sign Language (NZSL), or Te Reo Turi, is one of Aotearoa
+            New Zealand's three official languages. NZSL is a rich and
+            expressive language used by Deaf people and the wider Deaf community
+            throughout New Zealand.
+          </p>
+          <p>
+            This application has been designed to help beginners take their
+            first steps in learning NZSL. Explore a selection of signs, practise
+            your vocabulary, discover upcoming events, and connect with other
+            learners through the guest book.
+          </p>
+          <p>Your NZSL journey starts here.</p>
+        </section>
 
-      <section data-name="Signs" class="hidden">
-        <!-- Template sign list item -->
-        <div class="hidden">
-          <div id="sign-template" class="w-35">
-            <div
-              class="size-35 bg-red-100 flex items-center justify-center"
-              data-sign-svg
-            ></div>
-            <strong data-sign-meanings></strong>
-            <p data-sign-description class="text-sm"></p>
-          </div>
-        </div>
-
-        <input
-          id="sign-search-box"
-          type="text"
-          placeholder="Search for a sign..."
-        />
-
-        <div
-          id="signs-results"
-          class="flex flex-wrap h-[50vh] overflow-scroll justify-between"
-        ></div>
-      </section>
-
-      <section data-name="Register" class="hidden">
-        <div class="flex flex-col max-w-50">
-          <input id="username-field" type="text" placeholder="Username" />
-          <input id="password-field" type="text" placeholder="Password" />
-          <button id="register-button" type="button">Register</button>
-          <p data-response-text></p>
-        </div>
-      </section>
-
-      <div id="login-modal" class="hidden">
-        <div
-          class="fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-accent text-white p-10 rounded-md flex flex-col"
-        >
-          <strong>Login</strong>
-          <p>Enter your login details to leave a comment.</p>
-          <form>
-            <input
-              id="login-username-field"
-              type="text"
-              placeholder="Username"
-            />
-            <input
-              id="login-password-field"
-              type="text"
-              placeholder="Password"
-            />
-            <button id="login-button" type="submit">Login</button>
-          </form>
-        </div>
-      </div>
-
-      <section data-name="Guestbook" class="hidden">
-        <div class="flex flex-col">
-          <iframe
-            id="comments-iframe"
-            src="http://localhost:5000/api/Comments"
-            class="w-full flex-1"
-          ></iframe>
-
-          <form class="flex">
-            <input
-              id="comment-field"
-              type="text"
-              placeholder="Leave a comment"
-              class="flex-1 overflow-scroll"
-            />
-            <button id="comment-button" type="submit">Comment</button>
-          </form>
-        </div>
-      </section>
-
-      <section data-name="Events" class="hidden">
-        <div
-          id="events-list"
-          class="flex flex-wrap justify-between gap-y-4"
-        ></div>
-
-        <div class="hidden">
-          <div id="event-template" class="w-75 bg-red-100 flex flex-col gap-4">
-            <a data-link>
-              <strong data-title>Title</strong>
-            </a>
-
-            <div
-              class="grid grid-cols-[auto_1fr] max-sm:grid-cols-1 w-full gap-3"
-            >
-              <span>Start</span>
-              <span data-start-time></span>
-              <span>End</span>
-              <span data-end-time></span>
+        <section data-name="Signs" class="hidden">
+          <!-- Template sign list item -->
+          <div class="hidden">
+            <div id="sign-template" class="w-35">
+              <div
+                class="size-35 bg-red-100 flex items-center justify-center"
+                data-sign-svg
+              ></div>
+              <strong data-sign-meanings></strong>
+              <p data-sign-description class="text-sm"></p>
             </div>
+          </div>
 
-            <p data-description class="text-sm"></p>
+          <input
+            id="sign-search-box"
+            type="text"
+            placeholder="Search for a sign..."
+          />
+
+          <div
+            id="signs-results"
+            class="flex flex-wrap h-[50vh] overflow-scroll"
+          ></div>
+        </section>
+
+        <section data-name="Register" class="hidden">
+          <div class="flex flex-col max-w-50">
+            <input id="username-field" type="text" placeholder="Username" />
+            <input id="password-field" type="text" placeholder="Password" />
+            <button id="register-button" type="button">Register</button>
+            <p data-response-text></p>
+          </div>
+        </section>
+
+        <div id="login-modal" class="hidden">
+          <div
+            class="fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-accent text-white p-10 rounded-md flex flex-col"
+          >
+            <strong>Login</strong>
+            <p>Enter your login details to leave a comment.</p>
+            <form>
+              <input
+                id="login-username-field"
+                type="text"
+                placeholder="Username"
+              />
+              <input
+                id="login-password-field"
+                type="text"
+                placeholder="Password"
+              />
+              <button id="login-button" type="submit">Login</button>
+            </form>
           </div>
         </div>
-      </section>
+
+        <section data-name="Guestbook" class="hidden">
+          <div class="flex flex-col">
+            <iframe
+              id="comments-iframe"
+              src="http://localhost:5000/api/Comments"
+              class="w-full flex-1"
+            ></iframe>
+
+            <form class="flex">
+              <input
+                id="comment-field"
+                type="text"
+                placeholder="Leave a comment"
+                class="flex-1 overflow-scroll"
+              />
+              <button id="comment-button" type="submit">Comment</button>
+            </form>
+          </div>
+        </section>
+
+        <section data-name="Events" class="hidden">
+          <div id="events-list" class="flex flex-wrap gap-y-4"></div>
+
+          <div class="hidden">
+            <div
+              id="event-template"
+              class="w-75 bg-red-100 flex flex-col gap-4"
+            >
+              <a data-link>
+                <strong data-title>Title</strong>
+              </a>
+
+              <div
+                class="grid grid-cols-[auto_1fr] max-sm:grid-cols-1 w-full gap-3"
+              >
+                <span>Start</span>
+                <span data-start-time></span>
+                <span>End</span>
+                <span data-end-time></span>
+              </div>
+
+              <p data-description class="text-sm"></p>
+            </div>
+          </div>
+        </section>
+
+        <section data-name="Plots" class="hidden"></section>
+      </div>
     </div>
     <footer class="bg-accent flex items-center text-white p-6 gap-4">
       <p id="version-text"></p>
