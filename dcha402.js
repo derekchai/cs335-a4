@@ -146,7 +146,18 @@ document.getElementById("login-button").addEventListener("click", async () => {
     }
 });
 
-logInOutButton.addEventListener("click", () => showLogInPopUp());
+logInOutButton.addEventListener("click", () => {
+    if (isLoggedIn()) {
+        logOut();
+    } else {
+        showLogInPopUp();
+    }
+});
+
+function logOut() {
+    encodedCredentials = null;
+    updateLogInLogOutButtonText();
+}
 
 function showLogInPopUp(message = null) {
     const loginModal = document.getElementById("login-modal");
@@ -177,7 +188,6 @@ async function isAuthenticated() {
             Authorization: `Basic ${encodedCredentials}`,
         },
     });
-    console.log("HERE");
     return await response.ok;
 }
 
@@ -226,10 +236,25 @@ async function login(username, password) {
     encodedCredentials = btoa(`${username}:${password}`);
 
     if (await isAuthenticated()) {
-        document.getElementById("login-text").textContent =
-            `You are logged in as ${username}`;
+        updateLogInLogOutButtonText(username);
     }
 }
+
+function updateLogInLogOutButtonText(username) {
+    if (isLoggedIn()) {
+        document.getElementById("login-text").textContent =
+            `You are logged in as ${username}`;
+
+        logInOutButton.textContent = "Log out";
+    } else {
+        document.getElementById("login-text").textContent =
+            `You are not logged in`;
+
+        logInOutButton.textContent = "Log in";
+    }
+}
+
+updateLogInLogOutButtonText();
 
 async function getEvents() {
     const eventsList = document.getElementById("events-list");
