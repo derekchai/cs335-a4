@@ -177,18 +177,6 @@ function isLoggedIn() {
     return encodedCredentials != null;
 }
 
-/**
- * @returns { boolean } Whether the user is authenticated.
- */
-async function isAuthenticated() {
-    const response = await fetch(TEST_AUTH_URL, {
-        headers: {
-            Authorization: `Basic ${encodedCredentials}`,
-        },
-    });
-    return await response.ok;
-}
-
 const commentButton = document.getElementById("comment-button");
 commentButton.addEventListener("click", async () => {
     if (!isLoggedIn()) {
@@ -241,6 +229,18 @@ async function login(username, password) {
     }
 
     updateLogInLogOutButtonText(username);
+
+    /**
+     * @returns { boolean } Whether the user is authenticated.
+     */
+    async function isAuthenticated() {
+        const response = await fetch(TEST_AUTH_URL, {
+            headers: {
+                Authorization: `Basic ${encodedCredentials}`,
+            },
+        });
+        return await response.ok;
+    }
 }
 
 function updateLogInLogOutButtonText(username) {
