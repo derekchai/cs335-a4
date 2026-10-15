@@ -142,15 +142,23 @@ document.getElementById("login-button").addEventListener("click", async () => {
     if (await isAuthenticated()) {
         document.getElementById("login-modal").classList.add("hidden");
     } else {
-        console.log("HERE");
-        showLogInPopUp();
+        showLogInPopUp("Login credentials were wrong");
     }
 });
 
-logInOutButton.addEventListener("click", showLogInPopUp);
+logInOutButton.addEventListener("click", () => showLogInPopUp());
 
-function showLogInPopUp() {
-    document.getElementById("login-modal").classList.remove("hidden");
+function showLogInPopUp(message = null) {
+    const loginModal = document.getElementById("login-modal");
+    loginModal.classList.remove("hidden");
+
+    const statusMessage = loginModal.querySelector("[data-status-message]");
+
+    if (statusMessage != null) {
+        statusMessage.textContent = message;
+    }
+
+    statusMessage.classList.toggle("hidden", message === null);
 
     loginUsernameField.focus();
     loginUsernameField.select();
