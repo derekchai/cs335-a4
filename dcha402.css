@@ -27,8 +27,9 @@
 .flex {
     display: flex;
 }
-.grid {
+#events-grid {
     display: grid;
+    grid-template-columns: auto 1fr;
 }
 .hidden {
     display: none;
@@ -57,9 +58,6 @@
 }
 .flex-1 {
     flex: 1;
-}
-.grid-cols-\[auto_1fr\] {
-    grid-template-columns: auto 1fr;
 }
 .flex-col {
     flex-direction: column;
@@ -109,7 +107,7 @@
     font-style: italic;
 }
 @media (width < 40rem) {
-    .max-sm\:grid-cols-1 {
+    #events-grid {
         grid-template-columns: repeat(1, minmax(0, 1fr));
     }
 }
