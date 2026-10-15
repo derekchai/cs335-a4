@@ -136,15 +136,13 @@ const loginPasswordField = document.getElementById("login-password-field");
 
 const logInOutButton = document.getElementById("log-in-out-button");
 
-document.getElementById("login-button").addEventListener("click", async () => {
-    await login(loginUsernameField.value, loginPasswordField.value);
-
-    if (await isAuthenticated()) {
-        document.getElementById("login-modal").classList.add("hidden");
-    } else {
-        showLogInPopUp("Login credentials were wrong");
-    }
-});
+document
+    .getElementById("login-button")
+    .addEventListener(
+        "click",
+        async () =>
+            await login(loginUsernameField.value, loginPasswordField.value),
+    );
 
 logInOutButton.addEventListener("click", () => {
     if (isLoggedIn()) {
@@ -236,8 +234,13 @@ async function login(username, password) {
     encodedCredentials = btoa(`${username}:${password}`);
 
     if (await isAuthenticated()) {
-        updateLogInLogOutButtonText(username);
+        document.getElementById("login-modal").classList.add("hidden");
+    } else {
+        encodedCredentials = null;
+        showLogInPopUp("Login credentials were wrong");
     }
+
+    updateLogInLogOutButtonText(username);
 }
 
 function updateLogInLogOutButtonText(username) {
