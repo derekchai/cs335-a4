@@ -162,7 +162,6 @@ function logOut() {
 const loginModal = document.getElementById("login-modal");
 
 document.addEventListener("click", (event) => {
-    console.log("HERE");
     if (!loginModal.contains(event.target)) {
         showLogInModal(false);
     }
@@ -188,7 +187,8 @@ function isLoggedIn() {
 }
 
 const commentButton = document.getElementById("comment-button");
-commentButton.addEventListener("click", async () => {
+commentButton.addEventListener("click", async (event) => {
+    event.stopPropagation();
     if (!isLoggedIn()) {
         showLogInModal();
         return;
