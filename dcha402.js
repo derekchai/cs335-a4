@@ -139,10 +139,11 @@ const logInOutButton = document.getElementById("log-in-out-button");
 document.getElementById("login-button").addEventListener("click", async () => {
     await login(loginUsernameField.value, loginPasswordField.value);
 
-    document.getElementById("login-modal").classList.add("hidden");
-
-    if (!isAuthenticated()) {
-        logInOutButton.dispatchEvent(new Event("click"));
+    if (await isAuthenticated()) {
+        document.getElementById("login-modal").classList.add("hidden");
+    } else {
+        console.log("HERE");
+        showLogInPopUp();
     }
 });
 
@@ -168,6 +169,7 @@ async function isAuthenticated() {
             Authorization: `Basic ${encodedCredentials}`,
         },
     });
+    console.log("HERE");
     return await response.ok;
 }
 
