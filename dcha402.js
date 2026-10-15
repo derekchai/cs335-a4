@@ -155,6 +155,10 @@ function showLogInPopUp() {
     loginUsernameField.select();
 }
 
+function isLoggedIn() {
+    return encodedCredentials != null;
+}
+
 /**
  * @returns { boolean } Whether the user is authenticated.
  */
@@ -169,6 +173,11 @@ async function isAuthenticated() {
 
 const commentButton = document.getElementById("comment-button");
 commentButton.addEventListener("click", async () => {
+    if (!isLoggedIn()) {
+        showLogInPopUp();
+        return;
+    }
+
     const commentField = document.getElementById("comment-field");
 
     const url = `${ADD_COMMENT_URL}?comment=${commentField.value}`;
