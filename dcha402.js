@@ -140,15 +140,17 @@ document
     .getElementById("login-button")
     .addEventListener(
         "click",
-        async () =>
+        async (event) =>
             await login(loginUsernameField.value, loginPasswordField.value),
     );
 
-logInOutButton.addEventListener("click", () => {
+logInOutButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+
     if (isLoggedIn()) {
         logOut();
     } else {
-        showLogInPopUp();
+        showLogInModal();
     }
 });
 
@@ -157,9 +159,17 @@ function logOut() {
     updateLogInLogOutButtonText();
 }
 
-function showLogInPopUp(message = null) {
-    const loginModal = document.getElementById("login-modal");
-    loginModal.classList.remove("hidden");
+const loginModal = document.getElementById("login-modal");
+
+document.addEventListener("click", (event) => {
+    console.log("HERE");
+    if (!loginModal.contains(event.target)) {
+        showLogInModal(false);
+    }
+});
+
+function showLogInModal(show = true, message = null) {
+    loginModal.classList.toggle("hidden", !show);
 
     const statusMessage = loginModal.querySelector("[data-status-message]");
 
@@ -180,7 +190,7 @@ function isLoggedIn() {
 const commentButton = document.getElementById("comment-button");
 commentButton.addEventListener("click", async () => {
     if (!isLoggedIn()) {
-        showLogInPopUp();
+        showLogInModal();
         return;
     }
 
@@ -204,7 +214,7 @@ commentButton.addEventListener("click", async () => {
 
     if ((await response.status) === 401) {
         console.log("add comment: unauthorized (showing login)");
-        showLogInPopUp();
+        showLogInModal();
         return;
     }
 
@@ -225,7 +235,7 @@ async function login(username, password) {
         document.getElementById("login-modal").classList.add("hidden");
     } else {
         encodedCredentials = null;
-        showLogInPopUp("Login credentials were wrong");
+        showLogInModal(true, "Login credentials were wrong");
     }
 
     updateLogInLogOutButtonText(username);
